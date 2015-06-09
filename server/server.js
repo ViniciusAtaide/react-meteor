@@ -1,18 +1,29 @@
 Meteor.publish('users', function() {
-	return Users.find();
+	return Meteor.users.find();
+});
+
+Meteor.publish('posts', function() {
+	return Posts.find({$or: [{ user: this.userId }, { public: true}]});
 });
 
 
 Meteor.methods({
 
-	addUser: function (name) {
-		Users.insert({name: name});
+	addPost: function (title, body, public) {
+		Posts.insert({title: title, public: public, body: body, user: this.userId, createdAt: new Date(), updatedAt: new Date() });
 	},
-	removeUser: function (id) {
-		Users.remove(id);
+	removePost: function (id) {
+		
+		Posts.remove(id);
 	},
-	updateUser: function (id, newName) {
-		Users.update(id, {$set: {name: newName}});
+	updatePost: function (id, field, value) {
+		console.log(id, field, value);
+
+		field === 'title' ? 
+			Posts.update(id, {$set: {title: value, updatedAt: new Date() }})
+		:
+			Posts.update(id, {$set: {body: value, updatedAt: new Date() }})
+		
 	}
 
 });

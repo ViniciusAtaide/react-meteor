@@ -5,3 +5,7 @@
 
 meteor-platform
 reactjs:react
+firfi:meteor-react-bootstrap
+iron:router
+accounts-password
+accounts-ui

@@ -1,0 +1,21 @@
+<template name="nav">
+	<nav class="navbar navbar-default">
+		<div class="container">
+			<div class="navbar-header">
+				<div class="navbar-brand"><a href="{{ pathFor 'Blog' }}">Blog</a></div>
+			</div>
+			<div class="navbar-collapse">
+				{{#if currentUser}}
+				<ul class="navbar-nav nav">
+					<li class="{{ activeIfTemplateIs 'posts' }}">
+						<a href="{{ pathFor 'posts' }}">Novo Post</a>
+					</li>
+				</ul>
+				{{/if}}
+				<ul class="col-xs-4 pull-right navbar-nav nav">
+					<li><a href="#">{{> loginButtons}}</a> </li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+</template>

@@ -1,1 +1,1 @@
-Users = new Meteor.Collection('users');
+Posts = new Meteor.Collection('posts');
